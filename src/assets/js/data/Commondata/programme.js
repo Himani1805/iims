@@ -1,0 +1,26 @@
+export const Programme = [
+    {
+        id:1,
+        name:'BBA'
+    },
+    {
+        id:2,
+        name:'MBA'
+    },
+    {
+        id:3,
+        name:'BA'
+    },
+    {
+        id:4,
+        name:'B.COM'
+    },
+    {
+        id:5,
+        name:'M.COM'
+    },
+    {
+        id:6,
+        name:'MA'
+    },
+]

@@ -1,0 +1,1 @@
+export const semester=["I","II","III","IV","V","VI","VII","VIII"]
