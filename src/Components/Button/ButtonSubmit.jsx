@@ -1,24 +1,17 @@
 import { Box, Button } from "@chakra-ui/react";
 import React from "react";
 
-export default function ButtonSubmit({
-  text,
-  onSave,
-  pad,
-  color,
-  bg,
-  bgHover = "none",
-  radius = "none",
-}) {
+export default function ButtonSubmit({ text, onSave, style }) {
   return (
     <Box>
       <Button
         onClick={onSave}
-        p={pad}
-        color={color}
-        bg={bg}
-        borderRadius={radius}
-        _hover={{ bg: bgHover }}
+        p={style.padding}
+        color={style.color}
+        bg={style.bg}
+        border={style.border}
+        borderRadius={style.radius}
+        _hover={{ bg: style.bgHover, color: style?.colorHover }}
       >
         {text}
       </Button>

@@ -10,9 +10,14 @@ export default function Header() {
       border={"1px solid red"}
       mb={"40px"}
     >
-      <Flex backgroundColor={"#23394C"} alignItems={"center"}>
+      <Flex
+        backgroundColor={"#23394C"}
+        alignItems={"center"}
+        gap={"20px"}
+        px={"10px"}
+      >
         <Image
-          src="https://cdn0.iconfinder.com/data/icons/ui-essential-filled-line-1/32/menu-bar-navigation-dropdown-128.png"
+          src="https://cdn0.iconfinder.com/data/icons/ui-essential-filled-line/32/menu-bar-navigation-dropdown-128.png"
           width={"30px"}
           height={"30px"}
           color={"white"}
