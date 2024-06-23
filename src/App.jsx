@@ -1,13 +1,16 @@
-import React from 'react'
-import Header from './Components/Header/Header'
-import Dashboard from './Pages/admin/Dashboard'
-import AdminRoutes from './Router/AdminRoutes/AdminRoutes'
+import React from "react";
+import Header from "./Components/Header/Header";
+import AdminRoutes from "./Router/AdminRoutes/AdminRoutes";
+import ComboBox from "./Components/ComboBox/ComboBox";
+import Router from "./Router/Router";
 
 export default function App() {
   return (
     <>
-      <Header/>
-      <AdminRoutes/>
+      <Header />
+      <Router />
+      {/* <AdminRoutes /> */}
+      <ComboBox />
     </>
-  )
+  );
 }
