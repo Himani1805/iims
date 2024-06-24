@@ -2,6 +2,7 @@ import React from "react";
 import ComboBox from "../../Components/ComboBox/ComboBox";
 import ButtonSubmit from "../../Components/Button/ButtonSubmit";
 import ButtonReset from "../../Components/Button/ButtonReset";
+import SubMenu from "./SubMenu";
 
 export default function Test() {
   // Style Object for css
@@ -35,6 +36,7 @@ export default function Test() {
   }
   return (
     <div>
+      <SubMenu />
       <ComboBox />
       <ButtonSubmit
         text="Submit"

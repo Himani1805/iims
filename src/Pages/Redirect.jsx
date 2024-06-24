@@ -29,51 +29,6 @@ export default function Redirect() {
     case "viewtimetable":
       render = <ViewTimetable />;
       break;
-    case "viewtimetable":
-      render = <ViewTimetable />;
-      break;
-    case "viewtimetable":
-      render = <ViewTimetable />;
-      break;
-    case "viewtimetable":
-      render = <ViewTimetable />;
-      break;
-    case "viewtimetable":
-      render = <ViewTimetable />;
-      break;
-    case "viewtimetable":
-      render = <ViewTimetable />;
-      break;
-    case "viewtimetable":
-      render = <ViewTimetable />;
-      break;
-    case "viewtimetable":
-      render = <ViewTimetable />;
-      break;
-    case "viewtimetable":
-      render = <ViewTimetable />;
-      break;
-    case "viewtimetable":
-      render = <ViewTimetable />;
-      break;
-    case "viewtimetable":
-      render = <ViewTimetable />;
-      break;
-    case "viewtimetable":
-      render = <ViewTimetable />;
-      break;
-    case "viewtimetable":
-      render = <ViewTimetable />;
-      break;
-    case "viewtimetable":
-      render = <ViewTimetable />;
-      break;
-    case "viewtimetable":
-      render = <ViewTimetable />;
-      break;
-    case "viewtimetable":
-      render = <ViewTimetable />;
-      break;
 
     default:
       render = (

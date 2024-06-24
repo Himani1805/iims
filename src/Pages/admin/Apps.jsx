@@ -9,16 +9,16 @@ export default function Apps({ data }) {
   return (
     <Link to={`${endPoint}`} style={{ textDecoration: "none" }}>
       <Flex
-        width={"100px"}
-        height={"70px"}
+        width={"90px"}
+        height={"110px"}
         flexDirection={"column"}
-        justifyContent={"space-around"}
+        justifyContent={"space-evenly"}
         alignItems={"center"}
         boxShadow={
           "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px"
         }
         backgroundColor={"white"}
-        padding={"20px 7px"}
+        padding={"10px 7px"}
         borderRadius={"7px"}
       >
         <Flex height={"50%"}>

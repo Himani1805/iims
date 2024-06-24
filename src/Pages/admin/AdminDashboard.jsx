@@ -5,7 +5,7 @@ import Apps from './Apps'
 import { Box, Flex, Text } from '@chakra-ui/react'
 
 
-export default function Dashboard() {
+export default function AdminDashboard() {
   return (
     <Box  backgroundColor={'#E9F6FF'} padding={'20px'}  >
         <Box>

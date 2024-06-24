@@ -7,7 +7,7 @@ export default function Header() {
       width={"100%"}
       justifyContent={"space-between"}
       height={"70px"}
-      border={"1px solid red"}
+      borderBottom={"2px groove #c662bb"}
       mb={"40px"}
     >
       <Flex
@@ -32,7 +32,8 @@ export default function Header() {
         alignItems={"center"}
         gap={"10px"}
         px={"10px"}
-        borderLeft={"1px solid #bbb"}
+        borderLeft="3px double orange"
+        borderLeftRadius={"20px"}
       >
         <Box>
           <Image
