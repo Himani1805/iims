@@ -53,7 +53,7 @@ export const academic = [
         id:9,
         image:'https://cdn2.iconfinder.com/data/icons/electronic-line-3/64/Bar_menu_navigation_interface_icon-128.png',
         title:'School Time Table',
-        endPoint:'viewtimetable'
+        endPoint:'schooltimetable'
 
     },
     {
