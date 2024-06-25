@@ -31,12 +31,12 @@ import HolidayMaster from "./admin/Administrator/HolidayMaster";
 import MethodologyActivities from "./admin/Administrator/MethodologyActivities";
 import TimeTableReport from "./admin/Administrator/TimeTableReport";
 import AttendanceNotTakenReport from "./admin/Administrator/AttendanceNotTakenReport";
-import AcademicCalendar from "./admin/Administrator/AcademicCalendar";
-import AttendanceApprovalCases from "./admin/Administrator/AttendanceApprovalCases";
-import ProgramSemesterSections from "./admin/Administrator/ProgramSemesterSections";
+import AcademicCalender from "./admin/Administrator/AcademicCalender";
+import AttendanceApprovalClasses from "./admin/Administrator/AttendanceApprovalClasses";
+import ProgrameSemesterSections from "./admin/Administrator/ProgrameSemesterSections";
 import IPAddress from "./admin/Administrator/IPAddress";
 import StudentEventAttendance from "./admin/Administrator/StudentEventAttendance";
-import AttendanceRemarks from "./admin/Administrator/AttendanceRemarks";
+import AttendanceMarks from "./admin/Administrator/AttendanceMarks";
 import FacultySlotReport from "./admin/Administrator/FacultySlotReport";
 import HelpSupport from "./admin/Administrator/HelpSupport";
 import CourseSlotAssignment from "./admin/Administrator/CourseSlotAssignment";
@@ -44,7 +44,7 @@ import QuestionBankDashboard from "./admin/Administrator/QuestionBankDashboard";
 import BtlKeywords from "./admin/Administrator/BtlKeywords";
 import MyInOut from "./admin/Administrator/MyInOut";
 import History from "./admin/Administrator/History";
-import AllowedMyIP from "./admin/Administrator/AllowedMyIP";
+import AllowedMyIp from "./admin/Administrator/AllowedMyIp";
 import CreateTicket from "./admin/Administrator/CreateTicket";
 import Sop from "./admin/Administrator/Sop";
 import Help from "./admin/Administrator/Help";
@@ -149,13 +149,13 @@ export default function Redirect() {
       render = <AttendanceNotTakenReport />;
       break;
     case "academiccalender":
-      render = <AcademicCalendar />;
+      render = <AcademicCalender />;
       break;
     case "attendanceapprovalcases":
-      render = <AttendanceApprovalCases />;
+      render = <AttendanceApprovalClasses />;
       break;
     case "programsemestersections":
-      render = <ProgramSemesterSections />;
+      render = <ProgrameSemesterSections />;
       break;
     case "ipaddress":
       render = <IPAddress />;
@@ -164,7 +164,7 @@ export default function Redirect() {
       render = <StudentEventAttendance />;
       break;
     case "attendanceremarks":
-      render = <AttendanceRemarks />;
+      render = <AttendanceMarks />;
       break;
     case "facultyslotreport":
       render = <FacultySlotReport />;
@@ -189,7 +189,7 @@ export default function Redirect() {
       render = <History />;
       break;
     case "allowedmyip":
-      render = <AllowedMyIP />;
+      render = <AllowedMyIp />;
       break;
     case "createticket":
       render = <CreateTicket />;

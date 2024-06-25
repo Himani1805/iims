@@ -19,7 +19,7 @@ export default function Apps({ data }) {
         }
         backgroundColor={"white"}
         padding={"10px 7px"}
-        borderRadius={"7px"}
+        borderRadius={"5px"}
       >
         <Flex height={"50%"}>
           <Image src={data.image} width={"20px"} height={"20px"} />
