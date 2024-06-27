@@ -18,7 +18,7 @@ export default function PreTimeTable() {
       <Flex>
         <Box>
           <Text>Institution</Text>
-          <ComboBox data={} width={'20%'}/>
+          <ComboBox data={Institution} width={'20%'}/>
         </Box>
 
       </Flex>
