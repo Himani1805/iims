@@ -1,27 +1,33 @@
 export const Department = [
     {
         id:1,
-        name:'Management'
+        name:'Management',
+        type:'MGMT'
     },
     {
-        id:1,
-        name:'IT'
+        id:2,
+        name:'IT',
+        type:'IT'
     },
     {
-        id:1,
-        name:'HR'
+        id:3,
+        name:'HR',
+        type:'HR'
     },
     {
-        id:1,
-        name:'Admin'
+        id:4,
+        name:'Admin',
+        type:'Admin'
     },
     {
-        id:1,
-        name:'Faculty'
+        id:5,
+        name:'Faculty',
+        type:'Faculty'
     },
     {
-        id:1,
-        name:'Expanditure'
+        id:6,
+        name:'Expanditure',
+        type:'Exp'
     }
 
 ]

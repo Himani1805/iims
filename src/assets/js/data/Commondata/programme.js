@@ -1,26 +1,42 @@
 export const Programme = [
     {
         id:1,
-        name:'BBA'
+        name:'Master of Business Administration',
+        courseId:'SBS0135'
     },
     {
         id:2,
-        name:'MBA'
+        name:'Master of Commerce',
+        courseId:'SBS0140'
     },
     {
         id:3,
-        name:'BA'
+        name:'Master of Arts (Applied Economics)',
+        courseId:'SBS0147'
     },
     {
         id:4,
-        name:'B.COM'
+        name:'Bachelor of Arts (Hons) Applied Economics',
+        courseId:'SBS0104'
     },
     {
         id:5,
-        name:'M.COM'
+        name:'Bachelor of Commerce (Hons)',
+        courseId:'SBS0112'
     },
     {
         id:6,
-        name:'MA'
+        name:'Master of Business Administration(Integrated)',
+        courseId:'SBS0102'
     },
+    {
+        id:7,
+        name:'Bachelor of Business Administration',
+        courseId:'SBS0134'
+    },
+    {
+        id:8,
+        name:'Executive Master of Business Administration',
+        courseId:'SBS00147'
+    }
 ]
