@@ -1,0 +1,8 @@
+export const Department = [
+  { id: 1, name: "Management", type: "MGMT" },
+  { id: 2, name: "IT", type: "IT" },
+  { id: 3, name: "HR", type: "HR" },
+  { id: 4, name: "Admin", type: "Admin" },
+  { id: 5, name: "Faculty", type: "Faculty" },
+  { id: 6, name: "Finance", type: "FIN" },
+];
