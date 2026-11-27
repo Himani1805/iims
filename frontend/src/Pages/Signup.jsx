@@ -96,7 +96,7 @@ export default function Signup() {
             type="password"
             value={form.password}
             onChange={(e) => setForm({ ...form, password: e.target.value })}
-            placeholder="Min 6 characters"
+            placeholder="Min 8 chars, letter + number"
           />
         </FormControl>
 

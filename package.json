@@ -1,0 +1,17 @@
+{
+  "name": "hs-academic-portal",
+  "version": "1.0.0",
+  "private": true,
+  "description": "HS Academic Portal - Render entrypoint",
+  "scripts": {
+    "postinstall": "npm install --prefix backend",
+    "build": "npm install --prefix backend",
+    "start": "npm --prefix backend start",
+    "seed": "npm --prefix backend run seed",
+    "seed:data": "npm --prefix backend run seed:data",
+    "seed:master": "npm --prefix backend run seed:master"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -95,6 +95,16 @@ export default function Header() {
                 {user?.role === "admin" ? "Admin" : "User"} - HS Academic Portal
               </Text>
             </Box>
+            {isAdmin && (
+              <>
+                <Button as={RouterLink} to="/admin/users" size="sm" variant="ghost">
+                  Users
+                </Button>
+                <Button as={RouterLink} to="/admin/master-data" size="sm" variant="ghost">
+                  Master Data
+                </Button>
+              </>
+            )}
             <Button size="sm" variant="outline" onClick={handleLogout}>
               Logout
             </Button>

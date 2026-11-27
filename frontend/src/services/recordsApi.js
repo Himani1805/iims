@@ -5,9 +5,17 @@ export async function getRecordsSummary() {
   return data;
 }
 
-export async function listRecords(moduleKey) {
-  const { data } = await api.get(`/records/${moduleKey}`);
-  return data.records || [];
+export async function listRecords(moduleKey, { page = 1, limit = 20, q = "" } = {}) {
+  const { data } = await api.get(`/records/${moduleKey}`, {
+    params: { page, limit, q: q || undefined },
+  });
+  return {
+    records: data.records || [],
+    total: data.total || 0,
+    page: data.page || page,
+    pages: data.pages || 1,
+    limit: data.limit || limit,
+  };
 }
 
 export async function createRecord(moduleKey, payload) {

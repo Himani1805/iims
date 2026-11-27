@@ -6,6 +6,7 @@ import {
   FormLabel,
   Input,
   Select,
+  Spinner,
   Table,
   Tbody,
   Td,
@@ -18,34 +19,14 @@ import {
 } from "@chakra-ui/react";
 import React, { useEffect, useMemo, useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
-import {
-  AcademicYear,
-  Department,
-  Institution,
-  Programme,
-  ProgrammeType,
-  School,
-  Section,
-  Semester,
-} from "../assets/js/data/Commondata/commonData.js";
 import { ACADEMIC_FIELD_KEYS, getModuleConfig } from "../assets/js/modules.js";
+import { useMasterData } from "../context/MasterDataContext";
 import {
   createRecord,
   deleteRecord,
   listRecords,
   updateRecord,
 } from "../services/recordsApi.js";
-
-const academicOptions = {
-  Institution: { data: Institution, field: "name" },
-  School: { data: School, field: "name" },
-  Department: { data: Department, field: "name" },
-  AcademicYear: { data: AcademicYear, field: "year" },
-  ProgrammeType: { data: ProgrammeType, field: "name" },
-  Programme: { data: Programme, field: "name" },
-  Semester: { data: Semester, field: "name" },
-  Section: { data: Section, field: "name" },
-};
 
 function emptyForm(config) {
   const form = {};
@@ -62,28 +43,49 @@ function emptyForm(config) {
 
 export default function ModuleWorkspace({ moduleKey }) {
   const toast = useToast();
+  const { optionsFor } = useMasterData();
   const config = useMemo(() => getModuleConfig(moduleKey), [moduleKey]);
   const [form, setForm] = useState(() => emptyForm(config));
   const [records, setRecords] = useState([]);
   const [editingId, setEditingId] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [search, setSearch] = useState("");
+  const [query, setQuery] = useState("");
+  const [page, setPage] = useState(1);
+  const [pages, setPages] = useState(1);
+  const [total, setTotal] = useState(0);
+  const limit = 10;
 
-  async function refresh() {
+  async function refresh(nextPage = page, nextQuery = query) {
+    setLoading(true);
     try {
-      const rows = await listRecords(moduleKey);
-      setRecords(rows);
+      const data = await listRecords(moduleKey, {
+        page: nextPage,
+        limit,
+        q: nextQuery,
+      });
+      setRecords(data.records);
+      setPage(data.page);
+      setPages(data.pages);
+      setTotal(data.total);
     } catch (error) {
       toast({
         title: error.response?.data?.message || "Failed to load records",
         status: "error",
         duration: 2500,
       });
+    } finally {
+      setLoading(false);
     }
   }
 
   useEffect(() => {
     setForm(emptyForm(config));
     setEditingId(null);
-    refresh();
+    setSearch("");
+    setQuery("");
+    setPage(1);
+    refresh(1, "");
   }, [moduleKey]);
 
   function handleChange(e) {
@@ -121,7 +123,7 @@ export default function ModuleWorkspace({ moduleKey }) {
         toast({ title: "Record saved", status: "success", duration: 1800 });
       }
       handleReset();
-      await refresh();
+      await refresh(1, query);
     } catch (error) {
       toast({
         title: error.response?.data?.message || "Save failed",
@@ -144,7 +146,7 @@ export default function ModuleWorkspace({ moduleKey }) {
     try {
       await deleteRecord(moduleKey, id);
       if (editingId === id) handleReset();
-      await refresh();
+      await refresh(page, query);
       toast({ title: "Record deleted", status: "info", duration: 1600 });
     } catch (error) {
       toast({
@@ -153,6 +155,14 @@ export default function ModuleWorkspace({ moduleKey }) {
         duration: 2500,
       });
     }
+  }
+
+  function handleSearch(e) {
+    e.preventDefault();
+    const next = search.trim();
+    setQuery(next);
+    setPage(1);
+    refresh(1, next);
   }
 
   const columns = [
@@ -189,27 +199,24 @@ export default function ModuleWorkspace({ moduleKey }) {
         </Text>
         <Flex flexWrap={"wrap"} gap={4}>
           {config.academicFields &&
-            ACADEMIC_FIELD_KEYS.map((key) => {
-              const meta = academicOptions[key];
-              return (
-                <FormControl key={key} width={{ base: "100%", md: "280px" }}>
-                  <FormLabel mb={1}>{key.replace(/([A-Z])/g, " $1").trim()}</FormLabel>
-                  <Select
-                    name={key}
-                    value={form[key]}
-                    onChange={handleChange}
-                    bg={"white"}
-                    placeholder={`Select ${key}`}
-                  >
-                    {meta.data.map((item) => (
-                      <option key={item.id} value={item[meta.field]}>
-                        {item[meta.field]}
-                      </option>
-                    ))}
-                  </Select>
-                </FormControl>
-              );
-            })}
+            ACADEMIC_FIELD_KEYS.map((key) => (
+              <FormControl key={key} width={{ base: "100%", md: "280px" }}>
+                <FormLabel mb={1}>{key.replace(/([A-Z])/g, " $1").trim()}</FormLabel>
+                <Select
+                  name={key}
+                  value={form[key]}
+                  onChange={handleChange}
+                  bg={"white"}
+                  placeholder={`Select ${key}`}
+                >
+                  {optionsFor(key).map((item) => (
+                    <option key={item.id} value={item.name}>
+                      {item.name}
+                    </option>
+                  ))}
+                </Select>
+              </FormControl>
+            ))}
 
           {config.fields.map((field) => (
             <FormControl
@@ -257,12 +264,40 @@ export default function ModuleWorkspace({ moduleKey }) {
         border={"1px solid #e2e8f0"}
         overflowX={"auto"}
       >
-        <Flex justifyContent={"space-between"} alignItems={"center"} px={4} py={3}>
-          <Text fontWeight={"600"}>Saved records ({records.length})</Text>
+        <Flex
+          as="form"
+          onSubmit={handleSearch}
+          justifyContent={"space-between"}
+          alignItems={"center"}
+          px={4}
+          py={3}
+          gap={3}
+          flexWrap="wrap"
+        >
+          <Text fontWeight={"600"}>
+            Saved records ({total})
+          </Text>
+          <Flex gap={2} flex="1" maxW="420px">
+            <Input
+              size="sm"
+              bg="white"
+              placeholder="Search faculty, student, title..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+            <Button size="sm" type="submit" bg="#1B3A4B" color="white" _hover={{ bg: "#14303e" }}>
+              Search
+            </Button>
+          </Flex>
         </Flex>
-        {records.length === 0 ? (
+
+        {loading ? (
+          <Flex justify="center" py={8}>
+            <Spinner color="#1B3A4B" />
+          </Flex>
+        ) : records.length === 0 ? (
           <Text px={4} pb={4} color={"gray.500"}>
-            No records yet. Fill the form and click Save.
+            No records found. {query ? "Try a different search." : "Fill the form and click Save."}
           </Text>
         ) : (
           <Table size={"sm"}>
@@ -302,6 +337,30 @@ export default function ModuleWorkspace({ moduleKey }) {
             </Tbody>
           </Table>
         )}
+
+        <Flex justify="space-between" align="center" px={4} py={3} gap={3} flexWrap="wrap">
+          <Text fontSize="sm" color="gray.600">
+            Page {page} of {pages}
+          </Text>
+          <Flex gap={2}>
+            <Button
+              size="sm"
+              variant="outline"
+              isDisabled={page <= 1 || loading}
+              onClick={() => refresh(page - 1, query)}
+            >
+              Prev
+            </Button>
+            <Button
+              size="sm"
+              variant="outline"
+              isDisabled={page >= pages || loading}
+              onClick={() => refresh(page + 1, query)}
+            >
+              Next
+            </Button>
+          </Flex>
+        </Flex>
       </Box>
     </Box>
   );
