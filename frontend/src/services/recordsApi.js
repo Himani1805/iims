@@ -1,5 +1,10 @@
 import api from "./api";
 
+export async function getRecordsSummary() {
+  const { data } = await api.get("/records");
+  return data;
+}
+
 export async function listRecords(moduleKey) {
   const { data } = await api.get(`/records/${moduleKey}`);
   return data.records || [];
