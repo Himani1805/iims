@@ -15,13 +15,18 @@ backend/    Express API + MongoDB + JWT auth
 2. Install dependencies:
 
 ```bash
-npm run install:all
+cd backend
+npm install
+
+cd ../frontend
+npm install
 ```
 
 3. Create `backend/.env` from `backend/.env.example`.
 4. Seed admin user:
 
 ```bash
+cd backend
 npm run seed
 ```
 
@@ -33,13 +38,15 @@ Admin login:
 5. Start backend:
 
 ```bash
-npm run dev:backend
+cd backend
+npm run dev
 ```
 
 6. Start frontend (new terminal):
 
 ```bash
-npm run dev:frontend
+cd frontend
+npm run dev
 ```
 
 Open http://127.0.0.1:5173/
