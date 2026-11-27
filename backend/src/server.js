@@ -15,9 +15,24 @@ const PORT = Number(process.env.PORT) || 5050;
 // Required behind Render / reverse proxies (rate-limit + correct client IP)
 app.set("trust proxy", 1);
 
+const allowedOrigins = [
+  "http://127.0.0.1:5173",
+  "http://localhost:5173",
+  "https://frontend-bay-six-94.vercel.app",
+  ...(process.env.CLIENT_URL || "")
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean),
+];
+
 app.use(
   cors({
-    origin: process.env.CLIENT_URL || "http://127.0.0.1:5173",
+    origin(origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+      return callback(new Error(`CORS blocked for origin: ${origin}`));
+    },
     credentials: true,
   })
 );
